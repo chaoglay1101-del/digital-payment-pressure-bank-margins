@@ -1,0 +1,44 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local and generated data
+*.csv
+*.xlsx
+*.xls
+*.dta
+*.sav
+*.pkl
+*.parquet
+*.zip
+
+# Private or submission-only documents
+*.pdf
+*.docx
+*.pptx
+*.txt
+*.deb
+*.exe
+/報告與提交材料/
+/反思日誌/
+/工具與安裝檔/
+/作業要求及課程手冊/
+/採訪表格/
+/文獻參考/
+/逐字稿和課程資料/
+/603檢查/
+
+# Development drafts and local data-access experiments
+gemini-code-*.py
+import wrds.py
+
+# Keep portfolio documentation visible
+!README.md
+!docs/
+!docs/**
+!examples/
+!examples/**
