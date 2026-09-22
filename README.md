@@ -89,10 +89,6 @@ prepare bank panel -> download/discover/extract IMF indicator -> merge panel
 -> run main regressions -> run country robustness checks
 ```
 
-## Graduate application workspace
-
-Application planning materials for Taiwan graduate-school admissions are collected in [研究所申請資料](研究所申請資料/README.md), including the NTU Finance application checklist, research proposal draft, and English-requirement enquiry template.
-
 ## Methods and tools
 
 Python 3.14+, pandas, NumPy, linearmodels, statsmodels, matplotlib, openpyxl, and python-docx. Dependency metadata and reproducible environment resolution are in [pyproject.toml](pyproject.toml) and [uv.lock](uv.lock).

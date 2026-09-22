@@ -55,10 +55,6 @@ uv run pytest
 - [公開 synthetic example](examples/run_example.py)
 - [MIT License](LICENSE)
 
-## 研究所申請資料
-
-申請台灣研究所的資料整理在[研究所申請資料](研究所申請資料/README.md)，包括台大財金所甄試文件清單、研究計畫草案與英文門檻確認信模板。
-
 ## 研究限制
 
 以上結果是 conditional associations，不是因果估計。主要限制包括：數位支付變數只在國家年度層級變動、最終樣本只有三個國家、WRDS-derived data 不能公開，以及可能存在遺漏變數。研究結果應解讀為 ASEAN-3 銀行市場的實證關聯，而不是 ASEAN-5 或所有銀行市場的普遍因果結論。
