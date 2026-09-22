@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this research portfolio, please cite it using the metadata below."
+title: "Digital Payment Pressure and Bank Net Fee Margins"
+type: software
+version: 0.1.0
+repository-code: "https://github.com/chaoglay1101-del/digital-payment-pressure-bank-margins"
+license: MIT
+# Add the preferred author name and ORCID here before citing a formal release.

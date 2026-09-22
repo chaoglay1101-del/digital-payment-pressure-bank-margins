@@ -1,7 +1,7 @@
 [project]
-name = "final-year-project"
+name = "digital-payment-pressure-bank-margins"
 version = "0.1.0"
-description = "Add your description here"
+description = "Academic research portfolio examining digital payment pressure and bank net fee margins in an ASEAN-3 panel."
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
@@ -14,4 +14,9 @@ dependencies = [
     "python-docx>=1.2.0",
     "requests>=2.33.1",
     "statsmodels>=0.14.6",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.0",
 ]

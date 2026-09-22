@@ -1,4 +1,10 @@
-import os
+"""Estimate country-level robustness models using restricted thesis data.
+
+The input sample is produced by src/analysis/run_main_regressions.py and is not
+included in this public portfolio.
+"""
+
+from pathlib import Path
 import pandas as pd
 from linearmodels.panel import PanelOLS
 
@@ -15,15 +21,19 @@ except ModuleNotFoundError:
 # =====================================================
 # 0. Settings
 # =====================================================
-INPUT_FILE = "regression_sample_final_cleaned.csv"
-OUTPUT_CSV = "robustness_country_subsamples.csv"
-OUTPUT_DOCX = "robustness_country_subsamples.docx"
+ROOT = Path(__file__).resolve().parents[2]
+INPUT_FILE = ROOT / "regression_sample_final_cleaned.csv"
+OUTPUT_CSV = ROOT / "robustness_country_subsamples.csv"
+OUTPUT_DOCX = ROOT / "robustness_country_subsamples.docx"
 
 # =====================================================
 # 1. Load data
 # =====================================================
-if not os.path.exists(INPUT_FILE):
-    raise FileNotFoundError(f"Cannot find {INPUT_FILE}. Please run the main script first.")
+if not INPUT_FILE.exists():
+    raise FileNotFoundError(
+        f"Cannot find {INPUT_FILE.name}. Generate it from the restricted main-analysis "
+        "input; it is intentionally excluded from this public repository."
+    )
 
 reg_data = pd.read_csv(INPUT_FILE)
 

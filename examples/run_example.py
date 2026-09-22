@@ -6,12 +6,12 @@ import numpy as np
 import pandas as pd
 from linearmodels.panel import PanelOLS
 
-
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = Path(__file__).resolve().parent / "example_panel.csv"
 
 
 def build_example_panel() -> pd.DataFrame:
+    """Return a deterministic, model-ready synthetic bank-year panel."""
     rng = np.random.default_rng(2026)
     banks = [f"BANK_{number:02d}" for number in range(1, 9)]
     years = range(2018, 2024)
@@ -53,24 +53,29 @@ def build_example_panel() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def main() -> None:
-    panel = build_example_panel()
-    panel.to_csv(OUTPUT, index=False)
-
-    panel = panel.set_index(["bank_id", "year"])
+def estimate_example_model(panel: pd.DataFrame):
+    """Estimate the fixed-effects model used in the public demonstration."""
+    indexed_panel = panel.set_index(["bank_id", "year"])
     formula = (
         "net_fee_margin ~ 1 + digital_payment_pressure + capital_adequacy + "
         "size + credit_risk + interest_expense_ratio + deposit_ratio + "
         "EntityEffects + TimeEffects"
     )
-    result = PanelOLS.from_formula(formula=formula, data=panel).fit(
+    return PanelOLS.from_formula(formula=formula, data=indexed_panel).fit(
         cov_type="clustered",
         cluster_entity=True,
     )
 
+
+def main() -> None:
+    """Generate the public data file, fit the model, and report key diagnostics."""
+    panel = build_example_panel()
+    panel.to_csv(OUTPUT, index=False)
+    result = estimate_example_model(panel)
+
     print(f"Wrote synthetic data to: {OUTPUT.relative_to(ROOT)}")
     print(f"Observations: {int(result.nobs)}")
-    print(f"Banks: {panel.index.get_level_values('bank_id').nunique()}")
+    print(f"Banks: {panel['bank_id'].nunique()}")
     print("\nDigital payment pressure coefficient:")
     print(result.params["digital_payment_pressure"])
     print("\nThis is synthetic data for demonstrating the workflow, not thesis evidence.")

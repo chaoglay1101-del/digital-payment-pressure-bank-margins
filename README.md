@@ -2,49 +2,23 @@
 
 **Research portfolio | Undergraduate accounting and finance project | ASEAN-3 bank panel**
 
-This project investigates whether the growth of digital payment activity is associated with banks' net fee margins. It combines bank-level financial data with a country-year digital payment measure, then uses panel regressions to separate the relationship from persistent differences between banks and common changes over time. The study was designed for ASEAN-5, but the final data coverage is limited to Indonesia, Malaysia, and Thailand because the IMF indicator was not consistently available for the Philippines and Singapore.
+This project studies whether digital-payment activity is associated with banks' net fee margins in **Indonesia, Malaysia, and Thailand**. It combines bank-level financial data with an IMF Financial Access Survey (FAS) country-year measure, then estimates fixed-effects panel regressions to distinguish the relationship from persistent bank differences and common time trends.
 
 > **Research question:** Is digital payment pressure associated with bank net fee margins in Indonesia, Malaysia, and Thailand?
 
-## Why this project matters
+## Why it matters
 
-Digital payments may change how banks earn fee income. They can create new transaction opportunities, but they can also increase competition and reduce the fees earned from traditional payment services. This project tests that tension with an ASEAN-3 bank panel rather than assuming that digitalisation has an automatically positive effect.
+Digital payments can create transaction opportunities for banks while also increasing competition for traditional payment fees. Rather than assume one outcome, this project tests the association in an ASEAN-3 bank panel.
 
-## Portfolio highlights
+## Key findings
 
-- Built a documented data pipeline from bank-panel data and the IMF Financial Access Survey indicator `IMF_FAS_FCMIBT` measured as a percentage of GDP.
-- Standardised bank identifiers, constructed financial ratios, merged country-year data, and checked unmatched observations and currency conversion.
-- Estimated bank and year fixed-effects models with bank-clustered standard errors.
-- Added log, interaction, nonlinear, and country-sub-sample specifications to examine whether the baseline relationship changes across model choices.
-- Documented data decisions and validation checks so that the empirical result can be assessed rather than treated as a black box.
+The final thesis sample contains **344 observations from 39 banks between 2014 and 2022**.
 
-## Main findings
+- Linear specifications provide limited evidence of a direct association.
+- The log specification identifies a negative, statistically significant pooled association.
+- Country subsamples are heterogeneous, and decomposition analysis suggests the pooled relationship may substantially reflect cross-country structural differences rather than a common within-country effect.
 
-The final regression sample contains **344 observations from 39 banks between 2014 and 2022**. The linear baseline provides limited evidence of a direct relationship, while the log specification produces a negative and statistically significant pooled association. However, the country sub-samples point to heterogeneous relationships rather than one uniform pattern, and the decomposition analysis suggests that the pooled result may mainly reflect cross-country structural differences rather than a common within-country effect.
-
-These results should be read as **conditional associations, not causal proof**. The sample, measurement of digital payment pressure, omitted variables, and the country-level nature of the main explanatory variable all limit causal interpretation. The final analysis covers ASEAN-3, not the intended ASEAN-5 population.
-
-## Research design
-
-1. **Define the outcome:** net fee margin is the bank-level dependent variable.
-2. **Construct the explanatory measure:** identify and extract IMF Financial Access Survey indicator `IMF_FAS_FCMIBT` with unit `PT_GDP`, a country-year measure of mobile and internet banking transactions as a percentage of GDP.
-3. **Build the panel:** combine the country-year measure with bank-year observations and calculate controls for capital adequacy, size, credit risk, interest expense, and deposits.
-4. **Estimate the models:** use bank fixed effects, year fixed effects, clustered standard errors, and 1st/99th percentile winsorisation.
-5. **Test robustness:** compare raw scaled and log measures, large-bank interactions, a centred nonlinear specification, and country sub-samples.
-
-The full research-stage-to-file mapping is available in [docs/research-process.md](docs/research-process.md).
-
-## Run the public example
-
-The restricted thesis datasets are not included in this repository. To demonstrate the modelling workflow without exposing those files, the repository includes a small deterministic synthetic panel:
-
-```powershell
-python examples/run_example.py
-```
-
-The command creates [examples/example_panel.csv](examples/example_panel.csv) and estimates a bank and year fixed-effects model with bank-clustered standard errors. The generated coefficient is only a software demonstration; it is not part of the thesis results.
-
-## Selected results
+These are **conditional associations, not causal estimates**. The country-level explanatory measure, limited country coverage, omitted variables, and data constraints limit causal interpretation.
 
 | Specification | Digital payment coefficient | Observations | Interpretation |
 | --- | ---: | ---: | --- |
@@ -54,35 +28,71 @@ The command creates [examples/example_panel.csv](examples/example_panel.csv) and
 | Log baseline model | -0.010171** | 344 | Negative and statistically significant pooled association |
 | Nonlinear model | -0.010829** | 344 | Negative linear term; squared term not significant |
 
-`* p < 0.10`, `** p < 0.05`. Estimates are reported here to make the portfolio transparent; consult the generated result tables for standard errors and the full specification.
+`* p < 0.10`, `** p < 0.05`.
 
-## Repository guide
+## Research design
 
-| Research stage | File |
-| --- | --- |
-| Panel cleaning and financial ratios | [process_panel_data.py](process_panel_data.py) |
-| FAS indicator discovery | [search_fas_indicators.py](search_fas_indicators.py) |
-| Digital payment extraction | [extract_digital_payment_pressure.py](extract_digital_payment_pressure.py) |
-| Panel merge | [merge_digital_pressure_to_bank_panel.py](merge_digital_pressure_to_bank_panel.py) |
-| Main and advanced regressions | [512版迴歸/run_regressions_FINAL_clean.py](512版迴歸/run_regressions_FINAL_clean.py) |
-| Country sub-sample robustness | [512版迴歸/run_robustness_country_subsamples.py](512版迴歸/run_robustness_country_subsamples.py) |
-| Research process and decisions | [docs/research-process.md](docs/research-process.md) |
-| Public synthetic-data demonstration | [examples/run_example.py](examples/run_example.py) |
+1. Construct bank-level net fee margins and financial controls from the restricted bank panel.
+2. Identify IMF FAS indicator `IMF_FAS_FCMIBT`, measured as mobile and internet banking transactions as a percentage of GDP (`PT_GDP`).
+3. Merge the country-year measure with bank-year observations.
+4. Estimate bank and year fixed-effects models with bank-clustered standard errors and 1st/99th percentile winsorisation.
+5. Assess log, interaction, nonlinear, and country-subsample specifications.
 
-## Reproduction notes
+The detailed decision trail is in [docs/research-process.md](docs/research-process.md).
 
-The scripts use project-root-relative paths. The intended workflow is:
+## Reproducibility and data access
 
-```text
-clean bank panel -> identify/extract indicator -> merge and validate -> run main regressions -> run robustness checks
+| Component | Publicly reproducible? | Notes |
+| --- | --- | --- |
+| Synthetic fixed-effects demonstration | Yes | Fully self-contained in [examples/run_example.py](examples/run_example.py). |
+| IMF FAS retrieval and indicator extraction | Partly | The source is public but availability and terms can change; outputs are intentionally not committed. |
+| Bank-panel construction and thesis regressions | No | Required WRDS-derived data and intermediate files are restricted and excluded. |
+| Reported thesis findings | Inspectable, not rerunnable | This README reports the final results, but public files cannot regenerate them without the restricted inputs. |
+
+The study was originally designed for ASEAN-5. The final analysis is ASEAN-3 because the selected IMF measure was not consistently available for the Philippines and Singapore.
+
+## Run the public example
+
+The public example uses deterministic **synthetic** data. Its output demonstrates the Python and `linearmodels` workflow only; it is not evidence for the thesis.
+
+### Requirements
+
+- Python 3.14
+- [uv](https://docs.astral.sh/uv/)
+
+```powershell
+uv sync --group dev
+uv run python examples/run_example.py
+uv run pytest
 ```
 
-The full WRDS/IMF source files, derived datasets, course submissions, reflective logs, and local environment files are excluded from the public release. Before publishing this repository, confirm redistribution permissions and add a small synthetic example if visitors need to execute the pipeline without restricted data.
+The example writes an ignored `examples/example_panel.csv` file and estimates a fixed-effects model with bank-clustered standard errors.
 
-## Tools
+## Repository layout
 
-Python 3.14+, pandas, NumPy, linearmodels, statsmodels, matplotlib, openpyxl, and python-docx. Package metadata is recorded in [pyproject.toml](pyproject.toml).
+```text
+examples/                 Runnable synthetic-data demonstration
+src/data/                 Restricted-panel preparation and IMF FAS workflow
+src/analysis/             Final thesis regression and robustness specifications
+tests/                    Checks for the public synthetic demonstration
+docs/research-process.md  Research decisions, scope, and data-access notes
+```
+
+The intended restricted-data workflow is:
+
+```text
+prepare bank panel -> download/discover/extract IMF indicator -> merge panel
+-> run main regressions -> run country robustness checks
+```
+
+## Methods and tools
+
+Python 3.14+, pandas, NumPy, linearmodels, statsmodels, matplotlib, openpyxl, and python-docx. Dependency metadata and reproducible environment resolution are in [pyproject.toml](pyproject.toml) and [uv.lock](uv.lock).
 
 ## Academic and data note
 
-This repository is an academic research portfolio, not a redistribution of third-party datasets. The reported results are a concise portfolio summary of the accompanying thesis; the thesis remains the appropriate source for the full literature review, theory, tables, and discussion.
+This is an academic research portfolio, not a redistribution of third-party datasets. Confirm the permissions and terms for WRDS, IMF, and any other source material before using or redistributing data. The accompanying thesis is the appropriate source for the full literature review, theory, tables, and discussion.
+
+## Licence and citation
+
+Code in this repository is available under the [MIT License](LICENSE). See [CITATION.cff](CITATION.cff) for citation guidance.

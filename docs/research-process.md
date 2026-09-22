@@ -1,65 +1,73 @@
 # Research Process
 
-This page connects the repository files to the sequence of decisions in the research project.
+This page maps the public repository to the research decisions behind the final undergraduate project.
 
-## 1. Research design
+## 1. Scope and design
 
-The project studies the relationship between digital payment pressure and bank net fee margins. It was designed as an ASEAN-5 study, but the final panel covers Indonesia, Malaysia, and Thailand (ASEAN-3) because the IMF indicator was not consistently available for the Philippines and Singapore.
+The project examines the association between digital payment pressure and bank net fee margins. It was designed as an ASEAN-5 study, but the final panel covers **Indonesia, Malaysia, and Thailand (ASEAN-3)** because the selected IMF FAS measure was not consistently available for the Philippines and Singapore.
 
-Supporting material is kept outside the public code surface because it contains course submissions, drafts, and research notes.
+The public repository documents the workflow and provides a synthetic demonstration. Course submissions, drafts, restricted bank data, and derived thesis datasets remain outside the public code surface.
 
-## 2. Bank panel construction
+## 2. Bank-panel construction
 
-`process_panel_data.py` reads the WRDS-style bank panel and the candidate ASEAN-5 bank list, then filters to the three countries with consistent indicator coverage. It standardises bank names, retains the financial variables required by the study, handles selected missing values, and calculates ratios such as:
+[src/data/prepare_bank_panel.py](../src/data/prepare_bank_panel.py) reads a restricted WRDS-derived bank panel and a candidate bank list, filters the intended countries, normalises bank names, and calculates financial variables including:
 
 - liquidity ratio;
 - loan-to-deposit ratio;
-- capital adequacy proxy; and
+- capital-adequacy proxy; and
 - net fee margin.
 
-The output is `Academic_Bank_Panel_Data_Cleaned.csv`, which is ignored from the public repository because it is a derived dataset.
+It produces `Academic_Bank_Panel_Data_Cleaned.csv`. The required source files and output are excluded because they contain data that cannot be redistributed in this portfolio.
 
-## 3. Digital payment indicator
+## 3. Digital-payment indicator
 
-The indicator workflow is split into discovery and extraction:
+The indicator workflow separates discovery from the final measurement choice:
 
-- `search_fas_indicators.py` searches the IMF FAS wide-format file for candidate indicators.
-- `get_fas_mobile_internet_banking_from_data360.py` retrieves the relevant data source.
-- `extract_digital_payment_pressure.py` reshapes indicator `IMF_FAS_FCMIBT` with unit `PT_GDP` into a mergeable country-year table.
+1. [src/data/download_imf_fas.py](../src/data/download_imf_fas.py) retrieves the public IMF FAS wide-format source file.
+2. [src/data/discover_fas_indicator.py](../src/data/discover_fas_indicator.py) searches indicator labels by relevant keywords.
+3. [src/data/extract_digital_payment_pressure.py](../src/data/extract_digital_payment_pressure.py) extracts `IMF_FAS_FCMIBT` with unit `PT_GDP` to form a country-year digital-payment-pressure measure.
 
-This separation makes the measurement decision inspectable: indicator discovery is distinct from the final extraction step.
+This separation makes the measurement decision inspectable rather than treating the selected variable as a black box. IMF outputs are not committed to the repository; users should review the source's current access and redistribution terms.
 
 ## 4. Merge and validation
 
-`merge_digital_pressure_to_bank_panel.py` joins the country-year digital-payment measure to the cleaned bank panel. `check_merge_problem.py` is used to investigate unmatched observations and key-format issues. `fx_conversion_validation_summary.csv` records currency-conversion checks used during data validation.
+[src/data/merge_bank_panel.py](../src/data/merge_bank_panel.py) maps bank observations to countries and joins country-year payment pressure to the cleaned bank panel. The merge enforces a many-to-one country-year relationship to prevent duplicated indicator observations.
 
-The merged panel is an intermediate research output and is excluded from the public repository.
+The merged panel is an intermediate research output and is excluded from public version control.
 
-## 5. Regression analysis
+## 5. Main regression analysis
 
-The main cleaned regression workflow is in `512版迴歸/run_regressions_FINAL_clean.py`. It prepares the estimation sample, constructs transformed digital-payment variables, estimates panel models, and writes the main and advanced result tables.
+[src/analysis/run_main_regressions.py](../src/analysis/run_main_regressions.py) implements the final specifications. It:
 
-`advanced_regression_tests.py` contains additional nonlinear and interaction specifications. The older scripts in the root directory are retained as development history and should be labelled clearly before public release.
+- builds a common complete-case estimation sample;
+- calculates credit risk, interest expense, deposit, scaled, and log measures;
+- winsorises continuous variables at the 1st and 99th percentiles;
+- estimates bank and year fixed-effects models with bank-clustered standard errors; and
+- reports log, bank-size interaction, and mean-centred nonlinear specifications.
 
-## 6. Robustness and reflection
+The exact input dataset is restricted, so this script is retained for transparency but cannot run from a public clone.
 
-`512版迴歸/run_robustness_country_subsamples.py` estimates country-level subsample models for Indonesia, Malaysia, and Thailand. The project also contains written reflection and feedback material, but those documents remain outside the public GitHub portfolio because they are course and submission records.
+## 6. Country-subsample robustness
+
+[src/analysis/run_country_subsamples.py](../src/analysis/run_country_subsamples.py) estimates the log specification separately for Indonesia, Malaysia, and Thailand. It retains bank fixed effects and excludes year effects because the country-year explanatory measure would otherwise be absorbed in a single-country model.
 
 ## 7. Public demonstration
 
-The restricted-data pipeline and the public demonstration are intentionally separate. `examples/run_example.py` creates a deterministic synthetic bank panel and estimates a simplified version of the fixed-effects model. It is included so visitors can verify the Python and `linearmodels` workflow without access to WRDS or IMF source files. Its coefficient is not evidence for the thesis.
-
-Run it from the repository root:
+[examples/run_example.py](../examples/run_example.py) creates a deterministic synthetic panel and estimates a simplified bank and year fixed-effects model with bank-clustered standard errors.
 
 ```powershell
-python examples/run_example.py
+uv sync --group dev
+uv run python examples/run_example.py
+uv run pytest
 ```
 
-## Public release checklist
+The generated coefficient and data are illustrative only; they are not thesis evidence.
 
-- Remove or anonymise any bank-level identifiers that cannot be redistributed.
-- Confirm WRDS, IMF, and university data-use permissions.
-- Add a small synthetic dataset and a public example command if full reproducibility is required.
-- Keep synthetic example results clearly separate from the thesis results.
-- Replace local or personal filenames in documentation.
-- Review the final GitHub file list before publishing.
+## Public-release checklist
+
+- [x] Exclude restricted bank data, derived datasets, course submissions, and local environments.
+- [x] Provide a deterministic synthetic example and an automated test for the public workflow.
+- [x] Clearly distinguish the public demonstration from the non-public thesis results.
+- [ ] Confirm current WRDS, IMF, university, and any other relevant redistribution permissions before publishing additional data or artefacts.
+- [ ] Check the final GitHub file list and rendered README before every public release.
+- [ ] Replace the optional citation metadata in `CITATION.cff` with preferred author details if a formal citation is required.

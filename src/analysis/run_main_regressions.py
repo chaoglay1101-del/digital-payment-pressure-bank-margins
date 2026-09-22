@@ -1,4 +1,10 @@
-import os
+"""Estimate final fixed-effects models using restricted thesis data.
+
+The input panel is derived from restricted WRDS data and is not included in this
+public repository. Use examples/run_example.py for a fully runnable workflow.
+"""
+
+from pathlib import Path
 import pandas as pd
 import numpy as np
 from linearmodels.panel import PanelOLS
@@ -19,16 +25,17 @@ except ModuleNotFoundError:
 # 0. Settings
 # =====================================================
 
-INPUT_FILE = "bank_panel_with_digital_payment_pressure_and_Size_USD.csv"
+ROOT = Path(__file__).resolve().parents[2]
+INPUT_FILE = ROOT / "bank_panel_with_digital_payment_pressure_and_Size_USD.csv"
 
-OUTPUT_SAMPLE = "regression_sample_final_cleaned.csv"
-OUTPUT_VALIDATION = "regression_validation_summary.csv"
+OUTPUT_SAMPLE = ROOT / "regression_sample_final_cleaned.csv"
+OUTPUT_VALIDATION = ROOT / "regression_validation_summary.csv"
 
-MAIN_RESULTS_CSV = "main_regression_results_FINAL.csv"
-ADVANCED_RESULTS_CSV = "advanced_regression_tests_FINAL.csv"
+MAIN_RESULTS_CSV = ROOT / "main_regression_results_FINAL.csv"
+ADVANCED_RESULTS_CSV = ROOT / "advanced_regression_tests_FINAL.csv"
 
-MAIN_DOCX = "main_regression_results_FINAL.docx"
-ADVANCED_DOCX = "advanced_regression_tests_FINAL.docx"
+MAIN_DOCX = ROOT / "main_regression_results_FINAL.docx"
+ADVANCED_DOCX = ROOT / "advanced_regression_tests_FINAL.docx"
 
 APPLY_WINSORIZATION = True
 WINSOR_LOWER = 0.01
@@ -39,9 +46,11 @@ WINSOR_UPPER = 0.99
 # 1. Load data
 # =====================================================
 
-if not os.path.exists(INPUT_FILE):
+if not INPUT_FILE.exists():
     raise FileNotFoundError(
-        f"Cannot find {INPUT_FILE}. Make sure this file is in the same folder as this script."
+        f"Cannot find {INPUT_FILE.name}. It is a restricted derived thesis input and is "
+        "not included in the public repository. Run examples/run_example.py for the "
+        "public demonstration."
     )
 
 df = pd.read_csv(INPUT_FILE)
