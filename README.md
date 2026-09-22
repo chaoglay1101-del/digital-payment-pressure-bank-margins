@@ -4,6 +4,8 @@
 
 [繁體中文版](README.zh-TW.md)
 
+[LinkedIn](https://www.linkedin.com/in/yu-chen-chao/)
+
 This project studies whether digital-payment activity is associated with banks' net fee margins in **Indonesia, Malaysia, and Thailand**. It combines bank-level financial data with an IMF Financial Access Survey (FAS) country-year measure, then estimates fixed-effects panel regressions to distinguish the relationship from persistent bank differences and common time trends.
 
 > **Research question:** Is digital payment pressure associated with bank net fee margins in Indonesia, Malaysia, and Thailand?
