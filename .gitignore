@@ -37,6 +37,7 @@ examples/example_panel.csv
 # Development drafts and local data-access experiments
 gemini-code-*.py
 import wrds.py
+/BA/
 
 # Keep portfolio documentation and source visible
 !README.md

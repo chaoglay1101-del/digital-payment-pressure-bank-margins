@@ -78,6 +78,14 @@ tests/                    Checks for the public synthetic demonstration
 docs/research-process.md  Research decisions, scope, and data-access notes
 ```
 
+## Selected portfolio projects
+
+### Mobile Money Adoption in the Global South
+
+Tableau business-analytics project analysing mobile-money adoption, banking access, liquidity and financial inclusion across emerging markets. It combines Global Findex indicators with GSMA market context and presents the work as a five-part Tableau Story.
+
+See the project page: [projects/business-analytics-tableau](projects/business-analytics-tableau/README.md).
+
 The intended restricted-data workflow is:
 
 ```text
