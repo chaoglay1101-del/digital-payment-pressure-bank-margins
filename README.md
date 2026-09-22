@@ -1,18 +1,18 @@
 # Digital Payment Pressure and Bank Net Fee Margins
 
-**Research portfolio | Undergraduate accounting and finance project | ASEAN-5 bank panel**
+**Research portfolio | Undergraduate accounting and finance project | ASEAN-3 bank panel**
 
-This project investigates whether the growth of digital payment activity is associated with banks' net fee margins. It combines bank-level financial data with a country-year digital payment measure, then uses panel regressions to separate the relationship from persistent differences between banks and common changes over time.
+This project investigates whether the growth of digital payment activity is associated with banks' net fee margins. It combines bank-level financial data with a country-year digital payment measure, then uses panel regressions to separate the relationship from persistent differences between banks and common changes over time. The study was designed for ASEAN-5, but the final data coverage is limited to Indonesia, Malaysia, and Thailand because the IMF indicator was not consistently available for the Philippines and Singapore.
 
-> **Research question:** Is digital payment pressure associated with bank net fee margins in Indonesia, Malaysia, the Philippines, Singapore, and Thailand?
+> **Research question:** Is digital payment pressure associated with bank net fee margins in Indonesia, Malaysia, and Thailand?
 
 ## Why this project matters
 
-Digital payments may change how banks earn fee income. They can create new transaction opportunities, but they can also increase competition and reduce the fees earned from traditional payment services. This project tests that tension with an ASEAN-5 bank panel rather than assuming that digitalisation has an automatically positive effect.
+Digital payments may change how banks earn fee income. They can create new transaction opportunities, but they can also increase competition and reduce the fees earned from traditional payment services. This project tests that tension with an ASEAN-3 bank panel rather than assuming that digitalisation has an automatically positive effect.
 
 ## Portfolio highlights
 
-- Built a reproducible data pipeline from bank-panel data and an IMF Financial Access Survey indicator.
+- Built a documented data pipeline from bank-panel data and the IMF Financial Access Survey indicator `IMF_FAS_FCMIBT` measured as a percentage of GDP.
 - Standardised bank identifiers, constructed financial ratios, merged country-year data, and checked unmatched observations and currency conversion.
 - Estimated bank and year fixed-effects models with bank-clustered standard errors.
 - Added log, interaction, nonlinear, and country-sub-sample specifications to examine whether the baseline relationship changes across model choices.
@@ -20,14 +20,14 @@ Digital payments may change how banks earn fee income. They can create new trans
 
 ## Main findings
 
-The final regression sample contains **344 observations from 39 banks between 2014 and 2022**. Across the main specifications, the coefficient on digital payment pressure is negative, but the evidence is not consistently statistically significant. The log specification also produces a negative estimate, while the country sub-samples point to heterogeneous relationships rather than one uniform ASEAN-wide pattern.
+The final regression sample contains **344 observations from 39 banks between 2014 and 2022**. The linear baseline provides limited evidence of a direct relationship, while the log specification produces a negative and statistically significant pooled association. However, the country sub-samples point to heterogeneous relationships rather than one uniform pattern, and the decomposition analysis suggests that the pooled result may mainly reflect cross-country structural differences rather than a common within-country effect.
 
-These results should be read as **conditional associations, not causal proof**. The sample, measurement of digital payment pressure, omitted variables, and the country-level nature of the main explanatory variable all limit causal interpretation.
+These results should be read as **conditional associations, not causal proof**. The sample, measurement of digital payment pressure, omitted variables, and the country-level nature of the main explanatory variable all limit causal interpretation. The final analysis covers ASEAN-3, not the intended ASEAN-5 population.
 
 ## Research design
 
 1. **Define the outcome:** net fee margin is the bank-level dependent variable.
-2. **Construct the explanatory measure:** identify and extract a country-year digital payment indicator from the IMF Financial Access Survey workflow.
+2. **Construct the explanatory measure:** identify and extract IMF Financial Access Survey indicator `IMF_FAS_FCMIBT` with unit `PT_GDP`, a country-year measure of mobile and internet banking transactions as a percentage of GDP.
 3. **Build the panel:** combine the country-year measure with bank-year observations and calculate controls for capital adequacy, size, credit risk, interest expense, and deposits.
 4. **Estimate the models:** use bank fixed effects, year fixed effects, clustered standard errors, and 1st/99th percentile winsorisation.
 5. **Test robustness:** compare raw scaled and log measures, large-bank interactions, a centred nonlinear specification, and country sub-samples.
@@ -51,7 +51,7 @@ The command creates [examples/example_panel.csv](examples/example_panel.csv) and
 | Main model, scaled measure | -0.000292* | 344 | Negative association; marginal statistical evidence |
 | Main model with controls | -0.000264 | 344 | Negative association; not statistically significant |
 | Full controls model | -0.000208 | 344 | Negative association; not statistically significant |
-| Log baseline model | -0.010171** | 344 | Negative association under the log specification |
+| Log baseline model | -0.010171** | 344 | Negative and statistically significant pooled association |
 | Nonlinear model | -0.010829** | 344 | Negative linear term; squared term not significant |
 
 `* p < 0.10`, `** p < 0.05`. Estimates are reported here to make the portfolio transparent; consult the generated result tables for standard errors and the full specification.

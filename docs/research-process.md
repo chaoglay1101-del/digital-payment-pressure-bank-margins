@@ -4,13 +4,13 @@ This page connects the repository files to the sequence of decisions in the rese
 
 ## 1. Research design
 
-The project studies the relationship between digital payment pressure and bank net fee margins in an ASEAN-5 panel. The research design identifies the outcome, the country-year digital-payment measure, bank-level controls, and fixed-effects specifications.
+The project studies the relationship between digital payment pressure and bank net fee margins. It was designed as an ASEAN-5 study, but the final panel covers Indonesia, Malaysia, and Thailand (ASEAN-3) because the IMF indicator was not consistently available for the Philippines and Singapore.
 
 Supporting material is kept outside the public code surface because it contains course submissions, drafts, and research notes.
 
 ## 2. Bank panel construction
 
-`process_panel_data.py` reads the WRDS-style bank panel and the ASEAN-5 bank list. It filters observations by country, standardises bank names, retains the financial variables required by the study, handles selected missing values, and calculates ratios such as:
+`process_panel_data.py` reads the WRDS-style bank panel and the candidate ASEAN-5 bank list, then filters to the three countries with consistent indicator coverage. It standardises bank names, retains the financial variables required by the study, handles selected missing values, and calculates ratios such as:
 
 - liquidity ratio;
 - loan-to-deposit ratio;
@@ -25,7 +25,7 @@ The indicator workflow is split into discovery and extraction:
 
 - `search_fas_indicators.py` searches the IMF FAS wide-format file for candidate indicators.
 - `get_fas_mobile_internet_banking_from_data360.py` retrieves the relevant data source.
-- `extract_digital_payment_pressure.py` reshapes the selected country-year indicator into a mergeable table.
+- `extract_digital_payment_pressure.py` reshapes indicator `IMF_FAS_FCMIBT` with unit `PT_GDP` into a mergeable country-year table.
 
 This separation makes the measurement decision inspectable: indicator discovery is distinct from the final extraction step.
 
