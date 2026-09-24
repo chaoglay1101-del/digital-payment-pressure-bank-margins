@@ -42,7 +42,7 @@ These are **conditional associations, not causal estimates**. The country-level 
 4. Estimate bank and year fixed-effects models with bank-clustered standard errors and 1st/99th percentile winsorisation.
 5. Assess log, interaction, nonlinear, and country-subsample specifications.
 
-The detailed decision trail is in [docs/research-process.md](docs/research-process.md).
+The detailed decision trail is in [docs/research-process.md](docs/research-process.md). For a GitHub-readable account of the research question, design, results, limitations, and data-access boundaries, see the [public research report](docs/public-research-report.md).
 
 ## Reproducibility and data access
 
@@ -85,8 +85,8 @@ docs/research-process.md  Research decisions, scope, and data-access notes
 The intended restricted-data workflow is:
 
 ```text
-prepare bank panel -> download/discover/extract IMF indicator -> merge panel
--> run main regressions -> run country robustness checks
+02_Data/01_Raw -> prepare bank panel -> download/discover/extract IMF indicator
+-> merge panel -> run main regressions -> run country robustness checks
 ```
 
 ## Methods and tools
@@ -95,7 +95,7 @@ Python 3.14+, pandas, NumPy, linearmodels, statsmodels, matplotlib, openpyxl, an
 
 ## Academic and data note
 
-This is an academic research portfolio, not a redistribution of third-party datasets. Confirm the permissions and terms for WRDS, IMF, and any other source material before using or redistributing data. The accompanying thesis is the appropriate source for the full literature review, theory, tables, and discussion.
+This is an academic research portfolio, not a redistribution of third-party datasets. Confirm the permissions and terms for WRDS, IMF, and any other source material before using or redistributing data. The accompanying [public research report](docs/public-research-report.md) provides the full public account of the study's design, results, and limitations. It does not include the restricted datasets, course-submission versions, or other private materials.
 
 ## Licence and citation
 

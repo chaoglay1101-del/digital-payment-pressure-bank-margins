@@ -47,8 +47,13 @@ uv run python examples/run_example.py
 uv run pytest
 ```
 
+## 公開研究報告
+
+完整論文、課程提交版本與受限制資料不公開於 GitHub；但研究問題、方法、結果與限制已整理為可直接閱讀的英文版 [公開研究報告](docs/public-research-report.md)。該報告保留研究設計與結果解讀，並清楚說明哪些資料不可重分發、哪些分析只能透過合成資料示範檢視。
+
 ## Repository 導覽
 
+- [完整公開研究報告（英文）](docs/public-research-report.md)
 - [研究流程與資料決策](docs/research-process.md)
 - [主要迴歸程式](src/analysis/run_main_regressions.py)
 - [國家子樣本穩健性分析](src/analysis/run_country_subsamples.py)

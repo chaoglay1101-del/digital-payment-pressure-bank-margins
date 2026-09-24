@@ -1,6 +1,6 @@
 # Research Process
 
-This page maps the public repository to the research decisions behind the final undergraduate project.
+This page maps the public repository to the research decisions behind the final undergraduate project. For a GitHub-readable account of the study's design, results, limitations, and data-access boundaries, see the [public research report](public-research-report.md).
 
 ## 1. Scope and design
 
@@ -17,7 +17,7 @@ The public repository documents the workflow and provides a synthetic demonstrat
 - capital-adequacy proxy; and
 - net fee margin.
 
-It produces `Academic_Bank_Panel_Data_Cleaned.csv`. The required source files and output are excluded because they contain data that cannot be redistributed in this portfolio.
+It produces `02_Data/03_Intermediate/ASEAN5_Bank_Panel_Cleaned.csv`. The required source files and output are excluded because they contain data that cannot be redistributed in this portfolio.
 
 ## 3. Digital-payment indicator
 
@@ -68,6 +68,7 @@ The generated coefficient and data are illustrative only; they are not thesis ev
 - [x] Exclude restricted bank data, derived datasets, course submissions, and local environments.
 - [x] Provide a deterministic synthetic example and an automated test for the public workflow.
 - [x] Clearly distinguish the public demonstration from the non-public thesis results.
+- [x] Publish a GitHub-readable report of the design, results, limitations, and data-access boundaries without distributing restricted inputs.
 - [ ] Confirm current WRDS, IMF, university, and any other relevant redistribution permissions before publishing additional data or artefacts.
 - [ ] Check the final GitHub file list and rendered README before every public release.
 - [ ] Replace the optional citation metadata in `CITATION.cff` with preferred author details if a formal citation is required.
