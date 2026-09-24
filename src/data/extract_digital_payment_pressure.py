@@ -5,8 +5,9 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-INPUT_FILE = ROOT / "IMF_FAS_WIDEF_raw.csv"
-OUTPUT_FILE = ROOT / "digital_payment_pressure_mobile_internet_banking.csv"
+DATA_DIR = ROOT / "02_Data"
+INPUT_FILE = DATA_DIR / "01_Raw" / "IMF_FAS_Wide_Raw.csv"
+OUTPUT_FILE = DATA_DIR / "03_Intermediate" / "ASEAN5_Digital_Payment_Pressure.csv"
 TARGET_INDICATOR = "IMF_FAS_FCMIBT"
 COUNTRIES = {
     "IDN": "Indonesia",

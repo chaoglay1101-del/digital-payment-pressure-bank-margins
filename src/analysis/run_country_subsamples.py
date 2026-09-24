@@ -22,9 +22,10 @@ except ModuleNotFoundError:
 # 0. Settings
 # =====================================================
 ROOT = Path(__file__).resolve().parents[2]
-INPUT_FILE = ROOT / "regression_sample_final_cleaned.csv"
-OUTPUT_CSV = ROOT / "robustness_country_subsamples.csv"
-OUTPUT_DOCX = ROOT / "robustness_country_subsamples.docx"
+OUTPUT_DIR = ROOT / "02_Data" / "04_Analysis_Output"
+INPUT_FILE = OUTPUT_DIR / "ASEAN3_Regression_Sample_Cleaned.csv"
+OUTPUT_CSV = OUTPUT_DIR / "ASEAN3_Country_Robustness.csv"
+OUTPUT_DOCX = OUTPUT_DIR / "ASEAN3_Country_Robustness.docx"
 
 # =====================================================
 # 1. Load data

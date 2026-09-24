@@ -82,6 +82,14 @@ tests/                    Checks for the public synthetic demonstration
 docs/research-process.md  Research decisions, scope, and data-access notes
 ```
 
+More public research documentation:
+
+- [Full public research report](docs/public-research-report.md)
+- [Variable definitions](docs/variable-definitions.md)
+- [Methodology appendix](docs/methodology-appendix.md)
+- [References](docs/references.md)
+- [Research design diagram](docs/research-design.svg)
+
 The intended restricted-data workflow is:
 
 ```text

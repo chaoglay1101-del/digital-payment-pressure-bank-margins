@@ -45,7 +45,7 @@ Bank financial data were drawn from a restricted WRDS-derived panel. The project
 
 ### 3.2 Digital-payment-pressure measure
 
-The explanatory measure is the IMF Financial Access Survey indicator `IMF_FAS_FCMIBT`, expressed in `PT_GDP`: mobile and internet banking transactions as a percentage of GDP. The public scripts document how the selected indicator is retrieved, inspected, and converted to country-year form:
+The explanatory measure is the IMF Financial Access Survey indicator `IMF_FAS_FCMIBT`, expressed in `PT_GDP`: mobile and internet banking transactions as a percentage of GDP. The public scripts document how the selected indicator is retrieved, inspected, and converted to country-year form. The [variable definitions](variable-definitions.md) provide the public conceptual definitions, levels, and construction limits:
 
 1. [Download the IMF FAS source](../src/data/download_imf_fas.py).
 2. [Identify candidate indicators](../src/data/discover_fas_indicator.py).
@@ -58,9 +58,15 @@ The country-year level of this measure is central to the study's interpretation.
 
 The outcome is **net fee margin**, constructed from bank financial data as net fee income relative to total assets. The analysis also considers financial controls and alternative specifications, including bank size, capital adequacy, credit risk, interest expense, and deposit-related measures. The public code documents the precise calculation and modeling workflow, but the restricted inputs prevent a public clone from regenerating the final thesis estimates.
 
-## 4. Estimation strategy
+## 4. Research design at a glance
 
-The principal specifications use panel regressions with bank and year fixed effects. This design aims to separate the observed relationship from persistent bank differences and shocks common across the sample period. Standard errors are clustered at the bank level, and continuous variables are winsorised at the 1st and 99th percentiles.
+![Public research design workflow](research-design.svg)
+
+The diagram summarises the public-facing workflow. The bank panel remains restricted; the diagram describes its role without publishing bank identifiers or observations.
+
+## 5. Estimation strategy
+
+The principal specifications use panel regressions with bank and year fixed effects. The [methodology appendix](methodology-appendix.md) records the public model notation, transformations, estimation choices, and reproducibility boundaries. This design aims to separate the observed relationship from persistent bank differences and shocks common across the sample period. Standard errors are clustered at the bank level, and continuous variables are winsorised at the 1st and 99th percentiles.
 
 The analysis assesses several related specifications:
 
@@ -72,7 +78,7 @@ The analysis assesses several related specifications:
 
 Fixed effects strengthen the descriptive comparison, but they do not alone resolve all identification concerns. In particular, the digital-payment variable is measured at the country-year level, the analysis covers only three countries, and policy, infrastructure, and market-structure differences can remain relevant.
 
-## 5. Results
+## 6. Results
 
 The table below reports the headline estimates disclosed in the public project documentation. All specifications use 344 observations.
 
@@ -88,7 +94,7 @@ The table below reports the headline estimates disclosed in the public project d
 
 The linear specifications provide limited evidence of a robust direct association once additional controls are included. The log baseline model produces a negative, statistically significant pooled association. Taken together, these results are consistent with the possibility that stronger digital-payment activity coincides with lower bank net fee margins in the pooled sample, but they do not establish a uniform effect across banks or countries.
 
-## 6. Interpretation and diagnostic evidence
+## 7. Interpretation and diagnostic evidence
 
 The country-subsample analysis does not produce a uniform pattern across Indonesia, Malaysia, and Thailand. In addition, diagnostic decomposition indicates that the pooled result may substantially reflect structural differences between countries rather than a common within-country mechanism.
 
@@ -96,7 +102,7 @@ This matters for interpretation. A coefficient estimated from the pooled panel c
 
 A more complete account would require data that distinguish payment, card, merchant-service, and other non-interest income; more countries and years; and ideally a well-defined institutional event or policy change that supports a stronger identification design.
 
-## 7. Limitations
+## 8. Limitations
 
 The following limitations define the scope of the evidence:
 
@@ -107,7 +113,7 @@ The following limitations define the scope of the evidence:
 5. **Income aggregation.** Net fee margin does not separately identify payments, cards, merchant services, wealth management, or other sources of non-interest income.
 6. **Restricted data.** The underlying bank panel cannot be redistributed, so the exact thesis regressions are inspectable through their documented design and reported results but are not publicly rerunnable.
 
-## 8. Reproducibility and data access
+## 9. Reproducibility and data access
 
 This repository separates **method transparency** from **data redistribution**.
 
@@ -128,7 +134,7 @@ uv run pytest
 
 The example illustrates the Python and `linearmodels` fixed-effects workflow. Its synthetic observations and coefficient are not evidence for the thesis.
 
-## 9. Conclusion
+## 10. Conclusion
 
 This project finds limited linear evidence and a negative, statistically significant pooled association in a logarithmic specification between digital-payment pressure and bank net fee margins in an ASEAN-3 bank panel. The result should be read cautiously. Cross-country heterogeneity and the level at which the digital-payment measure varies mean that the analysis does not identify a universal or causal effect.
 
@@ -138,6 +144,10 @@ The main contribution is to frame a transparent empirical question at the inters
 
 - [Project README](../README.md)
 - [Chinese project summary](../README.zh-TW.md)
+- [Variable definitions](variable-definitions.md)
+- [Methodology appendix](methodology-appendix.md)
+- [Research design diagram](research-design.svg)
+- [References](references.md)
 - [Research process and data-access notes](research-process.md)
 - [IMF Financial Access Survey](https://data360.worldbank.org/en/dataset/IMF_FAS)
 

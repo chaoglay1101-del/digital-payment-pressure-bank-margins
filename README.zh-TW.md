@@ -54,6 +54,10 @@ uv run pytest
 ## Repository 導覽
 
 - [完整公開研究報告（英文）](docs/public-research-report.md)
+- [公開變數定義](docs/variable-definitions.md)
+- [公開方法附錄](docs/methodology-appendix.md)
+- [公開引用文獻](docs/references.md)
+- [研究設計流程圖](docs/research-design.svg)
 - [研究流程與資料決策](docs/research-process.md)
 - [主要迴歸程式](src/analysis/run_main_regressions.py)
 - [國家子樣本穩健性分析](src/analysis/run_country_subsamples.py)

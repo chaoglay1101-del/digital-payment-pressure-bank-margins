@@ -5,9 +5,10 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-BANK_INPUT = ROOT / "Academic_Bank_Panel_Data_Cleaned.csv"
-DIGITAL_INPUT = ROOT / "digital_payment_pressure_mobile_internet_banking.csv"
-OUTPUT_FILE = ROOT / "bank_panel_with_digital_payment_pressure.csv"
+DATA_DIR = ROOT / "02_Data"
+BANK_INPUT = DATA_DIR / "03_Intermediate" / "ASEAN5_Bank_Panel_Cleaned.csv"
+DIGITAL_INPUT = DATA_DIR / "03_Intermediate" / "ASEAN5_Digital_Payment_Pressure.csv"
+OUTPUT_FILE = DATA_DIR / "03_Intermediate" / "ASEAN5_Bank_Panel_Digital_Payment_Pressure.csv"
 COUNTRY_NAMES = {
     "IDN": "Indonesia",
     "MYS": "Malaysia",

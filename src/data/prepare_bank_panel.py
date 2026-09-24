@@ -13,9 +13,10 @@ import pandas as pd
 warnings.filterwarnings("ignore")
 
 ROOT = Path(__file__).resolve().parents[2]
-WRDS_INPUT = ROOT / "ASEAN5_Banks_Panel_Data.csv"
-BANK_LIST_INPUT = ROOT / "ASEAN5_listed_commercial_banks.xlsx"
-OUTPUT_FILE = ROOT / "Academic_Bank_Panel_Data_Cleaned.csv"
+DATA_DIR = ROOT / "02_Data"
+WRDS_INPUT = DATA_DIR / "01_Raw" / "ASEAN5_Banks_Panel_Raw.csv"
+BANK_LIST_INPUT = DATA_DIR / "01_Raw" / "ASEAN5_Listed_Commercial_Banks.xlsx"
+OUTPUT_FILE = DATA_DIR / "03_Intermediate" / "ASEAN5_Bank_Panel_Cleaned.csv"
 
 
 def simplify_name(name: object) -> str:

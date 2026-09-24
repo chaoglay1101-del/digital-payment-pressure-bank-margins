@@ -25,15 +25,16 @@ examples/example_panel.csv
 *.txt
 *.deb
 *.exe
-/報告與提交材料/
-/反思日誌/
-/工具與安裝檔/
-/作業要求及課程手冊/
-/採訪表格/
-/文獻參考/
-/逐字稿和課程資料/
-/603檢查/
-/研究所申請資料/
+/00_Admin_and_Guidance/
+/01_Literature/
+/02_Data/
+/03_Methods_and_Instruments/
+/04_Course_Materials/
+/05_Analysis_and_Working/
+/06_Submissions/
+/07_Graduate_Applications/
+/08_Tools/
+/09_Business_Analytics/
 
 # Development drafts and local data-access experiments
 gemini-code-*.py

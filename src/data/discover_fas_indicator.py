@@ -5,8 +5,9 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-INPUT_FILE = ROOT / "IMF_FAS_WIDEF_raw.csv"
-OUTPUT_FILE = ROOT / "fas_indicator_keyword_matches.csv"
+DATA_DIR = ROOT / "02_Data"
+INPUT_FILE = DATA_DIR / "01_Raw" / "IMF_FAS_Wide_Raw.csv"
+OUTPUT_FILE = DATA_DIR / "02_Reference_and_Templates" / "FAS_Indicator_Keyword_Matches.csv"
 KEYWORDS = ("mobile", "internet", "banking", "transaction", "transactions", "gdp")
 
 

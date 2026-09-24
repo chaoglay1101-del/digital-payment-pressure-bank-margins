@@ -26,16 +26,17 @@ except ModuleNotFoundError:
 # =====================================================
 
 ROOT = Path(__file__).resolve().parents[2]
-INPUT_FILE = ROOT / "bank_panel_with_digital_payment_pressure_and_Size_USD.csv"
+DATA_DIR = ROOT / "02_Data"
+INPUT_FILE = DATA_DIR / "03_Intermediate" / "ASEAN3_Bank_Panel_Digital_Payment_Pressure_Size_USD.csv"
 
-OUTPUT_SAMPLE = ROOT / "regression_sample_final_cleaned.csv"
-OUTPUT_VALIDATION = ROOT / "regression_validation_summary.csv"
+OUTPUT_SAMPLE = DATA_DIR / "04_Analysis_Output" / "ASEAN3_Regression_Sample_Cleaned.csv"
+OUTPUT_VALIDATION = DATA_DIR / "04_Analysis_Output" / "ASEAN3_Regression_Validation_Summary.csv"
 
-MAIN_RESULTS_CSV = ROOT / "main_regression_results_FINAL.csv"
-ADVANCED_RESULTS_CSV = ROOT / "advanced_regression_tests_FINAL.csv"
+MAIN_RESULTS_CSV = DATA_DIR / "04_Analysis_Output" / "ASEAN3_Main_Regression_Results.csv"
+ADVANCED_RESULTS_CSV = DATA_DIR / "04_Analysis_Output" / "ASEAN3_Advanced_Regression_Tests.csv"
 
-MAIN_DOCX = ROOT / "main_regression_results_FINAL.docx"
-ADVANCED_DOCX = ROOT / "advanced_regression_tests_FINAL.docx"
+MAIN_DOCX = DATA_DIR / "04_Analysis_Output" / "ASEAN3_Main_Regression_Results.docx"
+ADVANCED_DOCX = DATA_DIR / "04_Analysis_Output" / "ASEAN3_Advanced_Regression_Tests.docx"
 
 APPLY_WINSORIZATION = True
 WINSOR_LOWER = 0.01

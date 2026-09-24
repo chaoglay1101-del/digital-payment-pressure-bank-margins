@@ -7,8 +7,9 @@ import pandas as pd
 import requests
 
 ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT / "02_Data"
 SOURCE_URL = "https://data360files.worldbank.org/data360-data/data/IMF_FAS/IMF_FAS_WIDEF.csv"
-OUTPUT_FILE = ROOT / "IMF_FAS_WIDEF_raw.csv"
+OUTPUT_FILE = DATA_DIR / "01_Raw" / "IMF_FAS_Wide_Raw.csv"
 
 
 def main() -> None:
