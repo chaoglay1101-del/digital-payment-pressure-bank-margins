@@ -50,3 +50,8 @@ import wrds.py
 # Re-ignore generated files after re-including the examples directory.
 examples/__pycache__/
 examples/example_panel.csv
+
+# Private local tooling. Placed after the "!docs/**" re-include above, because a
+# later rule wins: docs/deepseek api.py carries an API key fallback and must
+# never be published. Keep the key in the DEEPSEEK_API_KEY environment variable.
+docs/deepseek api.py
