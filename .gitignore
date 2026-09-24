@@ -55,3 +55,7 @@ examples/example_panel.csv
 # later rule wins: docs/deepseek api.py carries an API key fallback and must
 # never be published. Keep the key in the DEEPSEEK_API_KEY environment variable.
 docs/deepseek api.py
+
+# The website's robots.txt is a published file, so it must escape the blanket
+# "*.txt" rule above. A later rule wins, which is also why this sits at the end.
+!10_Personal_Website/robots.txt
