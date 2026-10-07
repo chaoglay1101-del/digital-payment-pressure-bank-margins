@@ -6,15 +6,15 @@ This appendix records the public methodological design. It is intended to make t
 
 ```text
 Restricted bank panel                  IMF FAS public source
-        ?                                      ?
-        ?? bank filtering and variables       ?? indicator discovery
-        ?                                      ?? country-year extraction
-        ????????????????????????????????????????
-                       ?
+        │                                      │
+        ├─ bank filtering and variables       ├─ indicator discovery
+        │                                      └─ country-year extraction
+        └──────────────┬───────────────────────┘
+                       │
              country-year panel merge
-                       ?
+                       │
           common analysis sample and cleaning
-                       ?
+                       │
          fixed-effects association estimates
 ```
 
@@ -33,8 +33,8 @@ The public code separates these stages:
 A generic two-way fixed-effects specification is:
 
 \[
-NFM_{it} = eta DPP_{ct} + oldsymbol{\gamma}'\mathbf{X}_{it}
-+ lpha_i + \lambda_t + arepsilon_{it},
+NFM_{it} = \beta DPP_{ct} + \boldsymbol{\gamma}'\mathbf{X}_{it}
++ \alpha_i + \lambda_t + \varepsilon_{it},
 \]
 
 where:
@@ -42,11 +42,11 @@ where:
 - \(NFM_{it}\) is bank \(i\)'s net fee margin in year \(t\);
 - \(DPP_{ct}\) is the digital-payment-pressure measure for country \(c\) and year \(t\);
 - \(\mathbf{X}_{it}\) is a vector of bank-level controls;
-- \(lpha_i\) is a bank fixed effect;
+- \(\alpha_i\) is a bank fixed effect;
 - \(\lambda_t\) is a year fixed effect; and
-- \(arepsilon_{it}\) is the residual.
+- \(\varepsilon_{it}\) is the residual.
 
-The coefficient \(eta\) is interpreted as a conditional association within the stated model. It is not automatically a causal effect because digital-payment development may be correlated with regulation, infrastructure, market structure, macroeconomic conditions, and other omitted factors.
+The coefficient \(\beta\) is interpreted as a conditional association within the stated model. It is not automatically a causal effect because digital-payment development may be correlated with regulation, infrastructure, market structure, macroeconomic conditions, and other omitted factors.
 
 ## 3. Variable transformations
 
@@ -60,28 +60,28 @@ The workflow evaluates several forms of the explanatory measure:
 The corresponding model forms are:
 
 \[
-NFM_{it} = eta_1 DPP_{ct} + oldsymbol{\gamma}'\mathbf{X}_{it}
-+ lpha_i + \lambda_t + arepsilon_{it}, \quad 	ext{(1)}
+NFM_{it} = \beta_1 DPP_{ct} + \boldsymbol{\gamma}'\mathbf{X}_{it}
++ \alpha_i + \lambda_t + \varepsilon_{it}, \quad \text{(1)}
 \]
 
 \[
-NFM_{it} = eta_1 \ln(1 + DPP_{ct}) + oldsymbol{\gamma}'\mathbf{X}_{it}
-+ lpha_i + \lambda_t + arepsilon_{it}, \quad 	ext{(2)}
+NFM_{it} = \beta_1 \ln(1 + DPP_{ct}) + \boldsymbol{\gamma}'\mathbf{X}_{it}
++ \alpha_i + \lambda_t + \varepsilon_{it}, \quad \text{(2)}
 \]
 
 \[
-NFM_{it} = eta_1 \ln(1 + DPP_{ct}) + eta_2 \ln(1 + DPP_{ct}) 	imes LargeBank_i
-+ oldsymbol{\gamma}'\mathbf{X}_{it} + lpha_i + \lambda_t + arepsilon_{it}, \quad 	ext{(3)}
+NFM_{it} = \beta_1 \ln(1 + DPP_{ct}) + \beta_2 LargeBank_i + \beta_3 \ln(1 + DPP_{ct}) \times LargeBank_i
++ \boldsymbol{\gamma}'\mathbf{X}_{it} + \alpha_i + \lambda_t + \varepsilon_{it}, \quad \text{(3)}
 \]
 
 \[
-NFM_{it} = eta_1 DPP^c_{ct} + eta_2 (DPP^c_{ct})^2
-+ oldsymbol{\gamma}'\mathbf{X}_{it} + lpha_i + \lambda_t + arepsilon_{it}, \quad 	ext{(4)}
+NFM_{it} = \beta_1 DPP^c_{ct} + \beta_2 (DPP^c_{ct})^2
++ \boldsymbol{\gamma}'\mathbf{X}_{it} + \alpha_i + \lambda_t + \varepsilon_{it}, \quad \text{(4)}
 \]
 
 where \(DPP^c_{ct}\) is the centred log measure used before squaring. The large-bank indicator is defined as:
 
-\[ LargeBank_i = 1 	ext{ if total assets exceed the sample median of the final analysis sample, else } 0. \]
+\[ LargeBank_i = 1 \text{ if total assets exceed the sample median of the final analysis sample, else } 0. \]
 
 Centreing helps reduce mechanical correlation between the linear and squared terms; it does not solve omitted-variable or identification problems.
 

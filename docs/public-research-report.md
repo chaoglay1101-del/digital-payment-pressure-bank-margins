@@ -7,7 +7,7 @@
 
 ## Abstract
 
-This study examines whether digital-payment activity is associated with bank net fee margins in Indonesia, Malaysia, and Thailand. It combines a restricted bank-level financial panel with a country-year indicator from the IMF Financial Access Survey (FAS): mobile and internet banking transactions as a percentage of GDP. The final sample contains 344 bank-year observations from 39 banks over 2014?2022. Fixed-effects panel regressions indicate limited evidence of a direct linear association after controls, while a logarithmic specification identifies a negative and statistically significant pooled association. However, country subsamples are heterogeneous, and diagnostic decomposition suggests that cross-country structural differences may contribute materially to the pooled result. The evidence is therefore descriptive and conditional rather than causal. The study motivates further work using richer income disaggregation, broader country coverage, and research designs that can more clearly identify changes in digital-payment competition.
+This study examines whether digital-payment activity is associated with bank net fee margins in Indonesia, Malaysia, and Thailand. It combines a restricted bank-level financial panel with a country-year indicator from the IMF Financial Access Survey (FAS): mobile and internet banking transactions as a percentage of GDP. The final sample contains 344 bank-year observations from 39 banks over 2014–2022. Fixed-effects panel regressions indicate limited evidence of a direct linear association after controls, while a logarithmic specification identifies a negative and statistically significant pooled association. However, country subsamples are heterogeneous, and diagnostic decomposition suggests that cross-country structural differences may contribute materially to the pooled result. The evidence is therefore descriptive and conditional rather than causal. The study motivates further work using richer income disaggregation, broader country coverage, and research designs that can more clearly identify changes in digital-payment competition.
 
 ## 1. Research question
 
@@ -32,10 +32,10 @@ These channels imply an empirical question rather than a predetermined conclusio
 
 | Hypothesis | Theory | Prediction | Result |
 | --- | --- | --- | --- |
-| H1a Substitution | Contestable markets (Baumol, 1982); liquidity adjustment costs (Verdier, 2024) | ?? < 0 | Consistent: negative and significant at 5% in the pooled log model |
-| H1b Complementarity | Delegated monitoring (Diamond, 1984); bank?FinTech coexistence (Thakor, 2020); API and B2B alliances (Brandl and Hornuf, 2020) | ?? > 0 | Not supported |
-| H2 Scale heterogeneity | Scale economies in technology (Berger, 2003) | Larger banks more resilient | Not supported: interaction ?0.003930 (n.s.) |
-| H3 Non-linear transition | Substitution first, complementarity as markets mature | U-shape, ?? > 0 | Not supported: squared term ?0.001988 (n.s.) |
+| H1a Substitution | Contestable markets (Baumol, 1982); liquidity adjustment costs (Verdier, 2024) | β₁ < 0 | Consistent: negative and significant at 5% in the pooled log model |
+| H1b Complementarity | Delegated monitoring (Diamond, 1984); bank–FinTech coexistence (Thakor, 2020); API and B2B alliances (Brandl and Hornuf, 2020) | β₁ > 0 | Not supported |
+| H2 Scale heterogeneity | Scale economies in technology (Berger, 2003) | Larger banks more resilient | Not supported: interaction −0.003930 (n.s.) |
+| H3 Non-linear transition | Substitution first, complementarity as markets mature | U-shape, β₂ > 0 | Not supported: squared term −0.001988 (n.s.) |
 
 H1a and H1b need not be mutually exclusive: competitive pressure may dominate early, while intermediation and platform channels strengthen as infrastructure matures, which is what H3 tests.
 
@@ -50,7 +50,7 @@ The final thesis sample contains:
 | Countries | Indonesia, Malaysia, Thailand |
 | Banks | 39 |
 | Bank-year observations | 344 |
-| Period | 2014?2022 |
+| Period | 2014–2022 |
 
 Bank financial data were drawn from a restricted WRDS-derived panel. The project uses these data to construct bank-level financial measures and controls, including net fee margin and the five controls used in the final models: bank size (natural log of total assets in US dollars), the equity-to-assets ratio, credit risk (loan loss provisions / total assets), the interest expense ratio (interest expense / total assets), and the deposit ratio (total deposits / total assets). The restricted source data and the derived bank panel are not included in this public repository.
 
@@ -67,7 +67,7 @@ The country-year level of this measure is central to the study's interpretation.
 
 ### 3.3 Outcome and controls
 
-The outcome is **net fee and commission income relative to total assets, proxied by Compustat Global total non-interest income ? the closest series available consistently across the three markets, which also contains trading and other non-interest revenue.** The analysis also considers financial controls and alternative specifications, including bank size, the equity-to-assets ratio, credit risk, interest expense, and deposit-related measures. The public code documents the precise calculation and modeling workflow, but the restricted inputs prevent a public clone from regenerating the final thesis estimates.
+The outcome is **net fee and commission income relative to total assets, proxied by Compustat Global total non-interest income — the closest series available consistently across the three markets, which also contains trading and other non-interest revenue.** The analysis also considers financial controls and alternative specifications, including bank size, the equity-to-assets ratio, credit risk, interest expense, and deposit-related measures. The public code documents the precise calculation and modeling workflow, but the restricted inputs prevent a public clone from regenerating the final thesis estimates.
 
 ## 4. Research design at a glance
 
@@ -125,7 +125,7 @@ The linear specifications provide limited evidence of a robust direct associatio
 
 ## 7. Interpretation and diagnostic evidence
 
-The pooled negative association comes mainly from differences between countries ? Indonesia averages a net fee margin of 0.022 at a digital intensity of 164% of GDP, Thailand 0.012 at 271%, and Malaysia 0.012 at 540% ? rather than from change within each country over time. That is the pattern contestable-markets theory predicts, because contestability is a property of market structure and entry conditions differ: Indonesia licenses e-money and peer-to-peer providers openly, Malaysia has issued digital-bank licences against mature incumbents, and Thailand's virtual-bank framework is led by incumbents ? and it is in Thailand that the coefficient is weakly positive.
+The pooled negative association comes mainly from differences between countries — Indonesia averages a net fee margin of 0.022 at a digital intensity of 164% of GDP, Thailand 0.012 at 271%, and Malaysia 0.012 at 540% — rather than from change within each country over time. That is the pattern contestable-markets theory predicts, because contestability is a property of market structure and entry conditions differ: Indonesia licenses e-money and peer-to-peer providers openly, Malaysia has issued digital-bank licences against mature incumbents, and Thailand's virtual-bank framework is led by incumbents — and it is in Thailand that the coefficient is weakly positive.
 
 This matters for interpretation. A coefficient estimated from the pooled panel can combine several sources of variation: differences in national payment systems, regulatory settings, banking-sector structure, levels of financial inclusion, and the timing of digital adoption. The study therefore treats the negative log-specification result as a finding that motivates further research, not as proof that digital payments reduce fee income for every bank or market.
 

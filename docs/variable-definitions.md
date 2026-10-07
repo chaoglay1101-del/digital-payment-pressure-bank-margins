@@ -17,7 +17,7 @@ The final public description covers 39 banks and 344 bank-year observations in I
 
 | Variable | Conceptual definition | Level | Expected interpretation | Public-data status |
 | --- | --- | --- | --- | --- |
-| `Net_Fee_Margin` | Net fee and commission income relative to total assets, proxied by Compustat Global total non-interest income ? the closest series available consistently across the three markets, which also contains trading and other non-interest revenue | Bank-year | A bank-level measure of fee-based income relative to its asset base | Constructed from restricted bank financial data |
+| `Net_Fee_Margin` | Net fee and commission income relative to total assets, proxied by Compustat Global total non-interest income — the closest series available consistently across the three markets, which also contains trading and other non-interest revenue | Bank-year | A bank-level measure of fee-based income relative to its asset base | Constructed from restricted bank financial data |
 | `Digital_Payment_Pressure` | Mobile and internet banking transactions as a percentage of GDP | Country-year | A broad measure of digital-payment activity relative to the economy | Selected from IMF FAS; source is public, generated output is not committed |
 | `Log_Digital_Payment_Pressure` | Log-transformed digital-payment-pressure measure | Country-year | Reduces scale sensitivity and represents a proportional-style specification | Derived in the restricted analysis workflow |
 | `DPP_10pct_GDP` | A rescaled form of the digital-payment measure | Country-year | Makes small coefficient magnitudes easier to read | Derived in the restricted analysis workflow |
