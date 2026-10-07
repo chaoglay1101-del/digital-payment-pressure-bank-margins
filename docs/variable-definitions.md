@@ -17,15 +17,15 @@ The final public description covers 39 banks and 344 bank-year observations in I
 
 | Variable | Conceptual definition | Level | Expected interpretation | Public-data status |
 | --- | --- | --- | --- | --- |
-| `Net_Fee_Margin` | Net fee income relative to total assets | Bank-year | A bank-level measure of fee-based income relative to its asset base | Constructed from restricted bank financial data |
+| `Net_Fee_Margin` | Net fee and commission income relative to total assets, proxied by Compustat Global total non-interest income ? the closest series available consistently across the three markets, which also contains trading and other non-interest revenue | Bank-year | A bank-level measure of fee-based income relative to its asset base | Constructed from restricted bank financial data |
 | `Digital_Payment_Pressure` | Mobile and internet banking transactions as a percentage of GDP | Country-year | A broad measure of digital-payment activity relative to the economy | Selected from IMF FAS; source is public, generated output is not committed |
 | `Log_Digital_Payment_Pressure` | Log-transformed digital-payment-pressure measure | Country-year | Reduces scale sensitivity and represents a proportional-style specification | Derived in the restricted analysis workflow |
 | `DPP_10pct_GDP` | A rescaled form of the digital-payment measure | Country-year | Makes small coefficient magnitudes easier to read | Derived in the restricted analysis workflow |
-| `Size_USD` | Bank size expressed using the analysis currency convention | Bank-year | Controls for scale differences between banks | Constructed from restricted bank financial data |
-| `Capital_Adequacy_Proxy` | Equity relative to total assets | Bank-year | A simple balance-sheet capitalisation proxy | Constructed from restricted bank financial data |
-| `Credit_Risk` | Credit-risk measure based on the bank financial variables available to the project | Bank-year | Controls for differences in asset-quality exposure | Constructed from restricted bank financial data |
-| `Interest_Expense_Ratio` | Interest expense relative to the selected bank scale denominator | Bank-year | Controls for funding-cost differences | Constructed from restricted bank financial data |
-| `Deposit_Ratio` | Deposit-related balance-sheet measure relative to the selected bank scale denominator | Bank-year | Controls for funding structure | Constructed from restricted bank financial data |
+| `Size_USD` | Natural log of total assets converted into US dollars | Bank-year | Controls for scale differences between banks | Constructed from restricted bank financial data |
+| `Capital_Adequacy_Proxy` | Equity-to-assets ratio (EQRAT in the thesis): book equity / total assets | Bank-year | A simple balance-sheet capitalisation proxy | Constructed from restricted bank financial data |
+| `Credit_Risk` | Loan loss provisions / total assets | Bank-year | Controls for differences in asset-quality exposure | Constructed from restricted bank financial data |
+| `Interest_Expense_Ratio` | Interest expense / total assets | Bank-year | Controls for funding-cost differences | Constructed from restricted bank financial data |
+| `Deposit_Ratio` | Total deposits / total assets | Bank-year | Controls for funding structure | Constructed from restricted bank financial data |
 | `Large_Bank` | Indicator based on the analysis sample's bank-size classification | Bank-year | Supports a size-heterogeneity specification | Derived from restricted analysis data |
 | `Digital_x_LargeBank` | Interaction between digital-payment pressure and the size indicator | Bank-year | Tests whether the association differs by bank size | Derived in the restricted analysis workflow |
 
@@ -38,6 +38,8 @@ The selected source indicator is `IMF_FAS_FCMIBT`, used with unit `PT_GDP`. In t
 - [Digital-payment extraction script](../src/data/extract_digital_payment_pressure.py)
 
 The source's availability, indicator definitions, and reuse terms can change. Researchers should consult the current [IMF Financial Access Survey source](https://data360.worldbank.org/en/dataset/IMF_FAS) before reproducing or extending the measure.
+
+The digital-payment measure counts transactions processed by banks themselves, not by non-bank FinTech platforms. Between 2014 and 2022 it rose from 111% to 268% of GDP in Indonesia, from 366% to 719% in Malaysia, and from 124% to 532% in Thailand. In the linear models one unit equals 10 percentage points of GDP (`DPP_10pct_GDP`); the refined models use `ln(1 + DPP)`.
 
 ## Construction principles
 

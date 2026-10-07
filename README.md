@@ -16,7 +16,7 @@ Digital payments can create transaction opportunities for banks while also incre
 
 ## Key findings
 
-The final thesis sample contains **344 observations from 39 banks between 2014 and 2022**.
+The final thesis sample contains **344 observations from 39 banks between 2014 and 2022**. The outcome is the proxy for net fee and commission income: Compustat Global total non-interest income divided by total assets, which is the closest consistently available series across the three markets and also contains trading and other non-interest revenue.
 
 - Linear specifications provide limited evidence of a direct association.
 - The log specification identifies a negative, statistically significant pooled association.
@@ -30,9 +30,19 @@ These are **conditional associations, not causal estimates**. The country-level 
 | Main model with controls | -0.000264 | 344 | Negative association; not statistically significant |
 | Full controls model | -0.000208 | 344 | Negative association; not statistically significant |
 | Log baseline model | -0.010171** | 344 | Negative and statistically significant pooled association |
-| Nonlinear model | -0.010829** | 344 | Negative linear term; squared term not significant |
+| Size interaction model | -0.006507 | 344 | Large Bank dummy and interaction are not significant |
+| Nonlinear model | -0.010829** | 344 | Negative linear term; squared term is not significant |
 
 `* p < 0.10`, `** p < 0.05`.
+
+### Robustness highlights
+
+| Diagnostic | Estimate | Interpretation |
+| --- | --- | --- |
+| Driscoll-Kraay SE (Model 4) | -0.0102, SE 0.0035, p = 0.004 | Still significant when cross-sectional dependence is allowed |
+| Mundlak within-country | -0.0049, SE 0.0079, p = 0.53 | No within-country association |
+| Excluding 2020 | -0.008006, SE 0.004941, p = 0.106 | Similar size, less precise |
+| One-year lag | -0.015901*, SE 0.008475, p = 0.062 | Larger and negative; eases the reverse-causality concern |
 
 ## Research design
 

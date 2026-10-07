@@ -17,6 +17,8 @@ The public repository documents the workflow and provides a synthetic demonstrat
 - capital-adequacy proxy; and
 - net fee margin.
 
+The liquidity ratio and the loan-to-deposit ratio were calculated during the data-preparation stage to inspect balance-sheet structure, but they were not retained in the final model specification. The final regressions use net fee margin as the dependent variable and the five controls in the final model: bank size, the equity-to-assets ratio, credit risk, the interest expense ratio, and the deposit ratio.
+
 It produces `02_Data/03_Intermediate/ASEAN5_Bank_Panel_Cleaned.csv`. The required source files and output are excluded because they contain data that cannot be redistributed in this portfolio.
 
 ## 3. Digital-payment indicator
